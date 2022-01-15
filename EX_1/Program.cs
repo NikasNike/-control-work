@@ -1,27 +1,64 @@
-﻿int [] Mass2 = new int [10];
-Random rnd = new Random ();
-int [] Mass = new int [10];
-int lenght  = Mass.Length;
+﻿int [] Mass = new int [10];
 
-for (int i = 0; i < lenght; i++)
-    {
-        Mass[i] = (new Random()).Next(1, 20);
-        Console.WriteLine(Mass[i]);
-
-    }
-    Console.WriteLine();
-
-for(int i=0,j=0; i<Mass.Length && j < Mass2.Length; i++)
-    {
-        if (Mass[i]%2 == 0)
-            {
-                Mass2[j] = Mass[i];
-                j++;
-            }
-            
-    }
-for(int j=0; j < Mass2.Length; j++)
+int[] FillMass(int[] Mass)
 {
-    if(Mass2[j]>0)
-    System.Console.WriteLine(Mass2[j]);
+    for (int i = 0; i < Mass.Length; i++)       //заполнение первого массива
+        {
+            Mass[i] = (new Random()).Next(1, 20);
+        }
+        return Mass;
 }
+int[] SortMass(int[] Mass)
+{
+    int p=0;
+    for (int i = 0; i < Mass.Length; i++) //длинна второго массива
+        {
+            if (Mass[i]%2 == 0)
+                {
+                    p++;     
+                }
+        }
+    int [] Mass2 = new int [p];
+
+    for(int u = 0,j=0; u<Mass.Length && j < Mass2.Length; u++) // заполнение второго массива
+    {
+        if (Mass[u]%2 == 0)
+            {
+                Mass2[j]  = Mass[u];
+                j++;  
+            }
+    }
+    return Mass2;
+}
+
+void PrintArray(int[] col)  // Вывод массива в консоль
+{
+    int count = col.Length;
+    int position = 0;
+    while (position < count)
+    {
+            if(count-1>position)
+            {
+            Console.Write(col[position] +", ");
+            position++;
+            }
+            else
+            {
+                Console.Write(col[position] +" ");
+                position++;
+            }
+    }  
+    Console.WriteLine();
+}
+
+Mass = FillMass(Mass);
+Console.Write("First array: ");
+PrintArray(Mass);
+Console.WriteLine("|||||||||||||||||||||||||||||||||||||||||||||");
+Console.Write("Second array: ");
+PrintArray(SortMass(Mass));
+
+
+ 
+
+
